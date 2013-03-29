@@ -1,0 +1,1 @@
+sdc-oneachnode -c 'for zone in `zoneadm list -v | grep joyent | grep running | sed "s/^ *//;s/ *$//;s/ \{1,\}/ /g" | cut -d" " -f 2`; do if [ "$zone" = "global" ]; then continue; fi; hostid=$(zlogin -S $zone "hostid"); zonecfg -z $zone set hostid=$hostid;echo $zone $hostid;done'
